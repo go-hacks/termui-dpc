@@ -49,7 +49,8 @@ func (self *Gauge) Draw(buf *Buffer) {
 		for i, char := range label {
 			style := self.LabelStyle
 			if labelXCoordinate+i+1 <= self.Inner.Min.X+barWidth {
-				style = NewStyle(self.BarColor, ColorClear, ModifierReverse)
+				style.Fg = self.LabelStyle.Fg
+				style.Bg = self.BarColor
 			}
 			buf.SetCell(NewCell(char, style), image.Pt(labelXCoordinate+i, labelYCoordinate))
 		}
